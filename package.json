@@ -1,0 +1,25 @@
+{
+  "name": "weight-work",
+  "version": "1.0.0",
+  "description": "This is an application where I can track my progress in weight-lifting. I am taking a break right now due to some lower back issues, so it is the perfect time to dream of lifting weights.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/connorshea15/weight-work.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/connorshea15/weight-work/issues"
+  },
+  "homepage": "https://github.com/connorshea15/weight-work#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.5.0"
+  }
+}
