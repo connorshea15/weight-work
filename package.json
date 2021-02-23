@@ -2,9 +2,10 @@
   "name": "weight-work",
   "version": "1.0.0",
   "description": "This is an application where I can track my progress in weight-lifting. I am taking a break right now due to some lower back issues, so it is the perfect time to dream of lifting weights.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
