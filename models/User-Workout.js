@@ -1,9 +1,14 @@
+//
+//
+// I don't think I will even need this model!!! because I can just query workouts with the user_id of whomever I am looking for!
+
+
 const { Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
 
-class User extends Model {}
+class UserWorkout extends Model {}
 
-User.init(
+UserWorkout.init(
     // Table column definitions
     {
         id: {
@@ -12,21 +17,18 @@ User.init(
             primaryKey: true,
             autoIncrement: true
         },
-        username: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        password: {
-            type: DataTypes.STRING,
+        user_id: {
+            type: DataTypes.INTEGER,
             allowNull: false,
-            validate: {
-                len: [4]
+            references: {
+                model: 'user',
+                key: 'id'
             }
         },
-        weight: {
-            type: DataTypes.INTEGER,
-            allowNull: true
-        }, 
+        workout_name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
     },
     // Table Configuration Options
     {
@@ -39,8 +41,8 @@ User.init(
         // underscore instead of camelCase
         underscored:true,
         // model name stays lowercase in our database
-        modelName: 'user'
+        modelName: 'userworkout'
     }
 );
 
-module.exports = User;
+module.exports = UserWorkout;
