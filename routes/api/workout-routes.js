@@ -27,7 +27,8 @@ router.get('/:id', (req, res) => {
     Workout.findOne({
       attributes: ['id', 'name', 'created_at', 'sets', 'reps'],
       where: {
-        id: req.params.id
+        name: req.body.name,
+        user_id: req.params.id
       },
       include: [
         {
@@ -49,7 +50,7 @@ router.get('/:id', (req, res) => {
       });
   });
 
-// POST /api/users
+// POST /api/workouts
 router.post('/', (req, res) => {
     Workout.create({
         name: req.body.name,
@@ -66,7 +67,7 @@ router.post('/', (req, res) => {
         });
 });
 
-// PUT /api/users/1
+// PUT /api/workouts/1
 router.put('/:id', (req, res) => {
     Workout.update(req.body, {
         where: {
