@@ -1,4 +1,4 @@
-const { Model, DataTypes} = require('sequelize');
+const { Model, DataTypes, STRING} = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Workout extends Model {}
@@ -32,12 +32,20 @@ Workout.init(
             type: DataTypes.TEXT,
             allowNull: true
         },
+        muscle_group: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'user',
                 key: 'id'
             }
+        },
+        date_created: {
+            type: DataTypes.DATEONLY,
+            defaultValue: DataTypes.NOW
         }
     },
     // Table Configuration Options

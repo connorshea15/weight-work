@@ -1,12 +1,42 @@
 const router = require('express').Router();
 const { User, Workout } = require('../../models');
+const { Op } = require('sequelize');
 
 // GET /api/workouts
 // I can use this api to get all workout names and provide them in the dropdown
 router.get('/', (req, res) => {
     // Access our User model and run .findAll() method)
     Workout.findAll({
-        attributes: ['id', 'name', 'created_at'],
+        attributes: ['id', 'name', 'created_at', 'date_created'],
+        where: {
+            user_id: req.body.id
+        },
+        include: [
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
+    })
+      .then(dbWorkoutData => res.json(dbWorkoutData))
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
+
+// I can use this api to get all workouts for a dude within a date range
+router.get('/gains', (req, res) => {
+    // Access our User model and run .findAll() method)
+    Workout.findAll({
+        attributes: ['id', 'name', 'date_created'],
+        where: {
+            user_id: req.body.id,
+            name: req.body.name,
+            date_created: {
+                [Op.between]: [req.body.first_date, req.body.second_date]
+            }
+        },
         include: [
             {
                 model: User,
