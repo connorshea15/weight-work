@@ -8,6 +8,15 @@ class weightWorkService {
     create(data) {
         return http.post("/workouts", data);
     }
+
+    getMyWorkouts(id) {
+        return http.get(`/workouts/${id}`);
+    };
+    
 };
+
+    /*const getMyWorkouts = (id) => {
+        return http.get('/workouts');
+    };*/
 
 export default new weightWorkService();

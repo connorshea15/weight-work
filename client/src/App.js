@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Switch } from 'react-router-dom';
 import weightWorkService from "./services/workouts.service.js";
 import AddWorkout from './components/AddWorkout';
+import Workouts from './components/Workouts';
 
 function App() {
 
@@ -23,7 +24,7 @@ function App() {
         username: response.data.username,
         weight: response.data.weight
       })*/
-      console.log("user:   " + response.data[0].username);
+      //console.log("user:   " + response.data[0].username);
     })
     .catch(e => {
       console.log(e);
@@ -32,6 +33,9 @@ function App() {
   return (
     <div className="App">
       <AddWorkout></AddWorkout>
+      <Workouts
+        workouts={workouts}
+      ></Workouts>
     </div>
   );
 }

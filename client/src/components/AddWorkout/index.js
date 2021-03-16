@@ -17,18 +17,9 @@ const AddWorkout = () => {
     }
 
     const handleFormSubmit = async (event) => {
-        console.log("Submitted!");
         event.preventDefault();
 
-        /*var data = {
-            name: workoutState.name,
-            sets: workoutState.sets,
-            reps: workoutState.reps,
-            weight: workoutState.weight,
-            muscle_group: workoutState.muscle_group,
-            user_id: workoutState.user_id
-        }*/
-
+        // Create a a new workout
         weightWorkService.create(workoutState)
             .then( response => {
                 console.log(response.data);
@@ -65,7 +56,6 @@ const AddWorkout = () => {
                 <label>User Id (Temporary)</label>
                 <input type="number" class="form-control" name="user_id" onChange={handleChange} />
             </div>
-
             <button class="btn btn-primary" onClick={handleFormSubmit}>Submit</button>
         </form>
         </div>
