@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import workoutsService from '../../services/workouts.service.js';
 import weightWorkService from "../../services/workouts.service.js";
 
 const AddWorkout = () => {
@@ -15,9 +16,27 @@ const AddWorkout = () => {
         console.log(workoutState);
     }
 
-    /*handleFormSubmit = async (event) => {
+    const handleFormSubmit = async (event) => {
+        console.log("Submitted!");
         event.preventDefault();
-    }*/
+
+        /*var data = {
+            name: workoutState.name,
+            sets: workoutState.sets,
+            reps: workoutState.reps,
+            weight: workoutState.weight,
+            muscle_group: workoutState.muscle_group,
+            user_id: workoutState.user_id
+        }*/
+
+        weightWorkService.create(workoutState)
+            .then( response => {
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    };
 
     return (
         <div>
@@ -47,7 +66,7 @@ const AddWorkout = () => {
                 <input type="number" class="form-control" name="user_id" onChange={handleChange} />
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button class="btn btn-primary" onClick={handleFormSubmit}>Submit</button>
         </form>
         </div>
     );
