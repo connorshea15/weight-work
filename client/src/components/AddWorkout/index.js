@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import workoutsService from '../../services/workouts.service.js';
 import weightWorkService from "../../services/workouts.service.js";
 
 const AddWorkout = () => {

@@ -1,45 +1,90 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import weightWorkService from "../../services/workouts.service.js";
 
-const Workouts = ({workouts}) => {
+const Workouts = () => {
 
-    //const [state, setState] = useState({ loading: true });
-    console.log(workouts);
+    const [workouts, setWorkouts] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
+    var workoutsVariable = [];
     const id = 1;
-    var workouts = [];
-
-    // I really need to figure out how to set states without re rendering into eternity
-    weightWorkService.getMyWorkouts(id)
-    .then(response => {
-       /* setUser({
-        id: response.data.id,
-        username: response.data.username,
-        weight: response.data.weight
-      })*/
-      //console.log("workouts:   " + response.data[0].name);
-      workouts = response.data;
-      setState({
-          loading: false
-      });
-      loading = false;
-      //console.log("workouts:   " + workouts[0].name);
-    })
-    .catch(e => {
-      console.log(e);
-    });
 
 
-
-    return (
-        <div>
-            {workouts &&
-                workouts.map(workout => {
-                    <h3>{workout.name}</h3>
+        const fetchWorkouts = () => {
+            if (isLoading) {
+                weightWorkService.getMyWorkouts(id)
+                .then(response => {
+                  workoutsVariable = response.data;
+                  /*response.data.map(workout => {
+                      console.log(workout.id);
+                      setWorkouts([
+                          ...workouts,
+                          {
+                              id: workout.id,
+                              name: workout.name,
+                              date_created: workout.date_created,
+                          }
+                      ]);
+                  });*/
+                  setWorkouts([...response.data]);
+                  setIsLoading(false);
+                  
                 })
+                .catch(e => {
+                  console.log(e);
+                });
             }
-        </div>
-    )
+
+        };
+
+        useEffect(() => {
+            fetchWorkouts();
+            console.log("isLoading:    " + isLoading);
+            console.log("state:   " + workouts);
+        }, [isLoading]);
+
+        //fetchWorkouts();
+
+        
+    // I really need to figure out how to set states without re rendering into eternity
+        /*weightWorkService.getMyWorkouts(id)
+        .then(response => {
+          workouts = response.data;
+            setState({
+                loading: false
+            });
+        })
+        .catch(e => {
+          console.log(e);
+        });*/
+
+        /*workouts.map(workout => {
+            <h3>{workout.name}</h3>
+
+
+        })*/
+        /*{isLoading ? <div>loading...</div> :
+            <div>
+                {workouts.map(workout => {
+                    workout.name
+                })}
+            </div>
+            }*/
+
+
+        return (
+            <div>
+                {workouts &&
+                    workouts.map(workout => (
+                        <p>{workout.name}</p>
+                    ))
+                }
+
+
+    
+            </div>
+        )
+
 };
 
 export default Workouts;

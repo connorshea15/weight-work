@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -17,25 +17,23 @@ function App() {
 
   const [user, setUser] = useState(initialUserState);
 
- weightWorkService.getAll()
+ /*weightWorkService.getAll()
     .then(response => {
-      /*setUser({
+      setUser({
         id: response.data.id,
         username: response.data.username,
         weight: response.data.weight
-      })*/
+      })
       //console.log("user:   " + response.data[0].username);
     })
     .catch(e => {
       console.log(e);
-    });
+    });*/
 
   return (
     <div className="App">
       <AddWorkout></AddWorkout>
-      <Workouts
-        workouts={workouts}
-      ></Workouts>
+      <Workouts></Workouts>
     </div>
   );
 }
