@@ -7,7 +7,7 @@ const { Op } = require('sequelize');
 router.get('/:id', (req, res) => {
     // Access our User model and run .findAll() method)
     Workout.findAll({
-        attributes: ['id', 'name', 'date_created'],
+        attributes: ['id', 'name', 'date_created', 'created_at'],
         where: {
             user_id: req.params.id
         },
@@ -26,15 +26,19 @@ router.get('/:id', (req, res) => {
 });
 
 // I can use this api to get all workouts for a dude within a date range
-router.get('/gains', (req, res) => {
+// the req.params is the user_id 
+// so if two dates are included in the request body, then it uses them to narrow the search, otherwise it uses fake dates 2021-01-01 and 2030-01-01
+router.get('/gains/:id', (req, res) => {
     // Access our User model and run .findAll() method)
     Workout.findAll({
         attributes: ['id', 'name', 'date_created'],
         where: {
-            user_id: req.body.id,
+            user_id: req.params.id,
             name: req.body.name,
             date_created: {
-                [Op.between]: [req.body.first_date, req.body.second_date]
+              [Op.or]: [
+                {[Op.between]: [req.body.first_date || "2021-01-01", req.body.second_date || "2030-01-01"]}
+              ]    
             }
         },
         include: [
