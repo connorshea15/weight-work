@@ -3,7 +3,7 @@ import weightWorkService from "../../services/workouts.service.js";
 
 const AddWorkout = () => {
     
-    const [workoutState, setWorkoutState] = useState({ name: '', sets: null, reps: null, weight: null, muscle_group: '', user_id: null });
+    const [workoutState, setWorkoutState] = useState({ name: '', sets: null, reps: null, weight: null, muscle_group: '', notes: '', user_id: null });
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -50,6 +50,10 @@ const AddWorkout = () => {
             <div class="form-group">
                 <label>Weight</label>
                 <input type="number" class="form-control" name="weight" onChange={handleChange} />
+            </div>
+            <div class="form-group">
+                <label>Notes</label>
+                <textarea type="textarea" class="form-control" name="notes" onChange={handleChange} />
             </div>
             <div class="form-group">
                 <label>User Id (Temporary)</label>

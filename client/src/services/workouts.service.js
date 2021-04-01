@@ -12,6 +12,10 @@ class weightWorkService {
     getMyWorkouts(id) {
         return http.get(`/workouts/${id}`);
     };
+
+    getSingleWorkout(id) {
+        return http.get(`/workouts/single/${id}`);
+    }
     
 };
 

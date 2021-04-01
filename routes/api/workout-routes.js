@@ -57,12 +57,11 @@ router.get('/gains/:id', (req, res) => {
 
 // GET /api/workouts/1
 // get a single workout based on the workout id
-router.get('/:id', (req, res) => {
+router.get('/single/:id', (req, res) => {
     Workout.findOne({
-      attributes: ['id', 'name', 'created_at', 'sets', 'reps'],
+      attributes: ['id', 'name', 'date_created', 'sets', 'reps', 'weight', 'notes'],
       where: {
-        name: req.body.name,
-        user_id: req.params.id
+        id: req.params.id
       },
       include: [
         {

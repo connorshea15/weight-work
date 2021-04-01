@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import weightWorkService from "../../services/workouts.service.js";
+import SingleWorkout from '../SingleWorkout';
 
 const Workouts = () => {
 
@@ -14,7 +15,7 @@ const Workouts = () => {
                 .then(response => {
                   setWorkouts([...response.data]);
                   setIsLoading(false);
-                  
+                  console.log(response.data[0].id);
                 })
                 .catch(e => {
                   console.log(e);
@@ -31,7 +32,10 @@ const Workouts = () => {
             <div>
                 {workouts &&
                     workouts.map(workout => (
-                        <p>{workout.name}</p>
+                        <SingleWorkout
+                            workoutName={workout.name}
+                            id={workout.id}
+                        ></SingleWorkout>
                     ))
                 }
             </div>
