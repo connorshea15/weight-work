@@ -6,8 +6,14 @@ import { Route, Switch } from 'react-router-dom';
 import weightWorkService from "./services/workouts.service.js";
 import AddWorkout from './components/AddWorkout';
 import Workouts from './components/Workouts';
+import TheCalendar from './components/Calendar';
+import Nav from './components/Nav';
 
 function App() {
+
+  const [sections] = useState(['My Workouts', 'Calendar', 'Add Workout']);
+
+  const [currentSection, setCurrentSection] = useState(sections[0]);
 
   const initialUserState = {
     id: null,
@@ -32,8 +38,20 @@ function App() {
 
   return (
     <div className="App">
-      <AddWorkout></AddWorkout>
-      <Workouts></Workouts>
+      <Nav
+          sections={sections}
+          setCurrentSection={setCurrentSection}
+          currentSection={currentSection}
+      >
+      </Nav>
+      {currentSection === 'My Workouts' ? (
+          <Workouts></Workouts>
+          
+        ) : currentSection === 'Calendar' ? (
+          <TheCalendar></TheCalendar>
+        ) : (
+          <AddWorkout></AddWorkout>
+        )}
     </div>
   );
 }

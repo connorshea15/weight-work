@@ -19,8 +19,4 @@ class weightWorkService {
     
 };
 
-    /*const getMyWorkouts = (id) => {
-        return http.get('/workouts');
-    };*/
-
 export default new weightWorkService();

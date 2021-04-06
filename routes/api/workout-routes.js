@@ -4,6 +4,7 @@ const { Op } = require('sequelize');
 
 // GET /api/workouts
 // I can use this api to get all workout names and provide them in the dropdown
+// I could maybe use this 
 router.get('/:id', (req, res) => {
     // Access our User model and run .findAll() method)
     Workout.findAll({

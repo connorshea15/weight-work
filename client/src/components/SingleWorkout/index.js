@@ -63,8 +63,8 @@ const SingleWorkout = (props) => {
                             <h4>Date</h4>
                             {workout.date_created}
                             <h4>Sets: {workout.sets}</h4>
-                            <h4>Reps: {workout.sets}</h4>
-                            <h4>Weight: {workout.sets}</h4>
+                            <h4>Reps: {workout.reps}</h4>
+                            <h4>Weight: {workout.weight}</h4>
                             <h4>Notes</h4>
                             {workout.notes}
                         </div>
