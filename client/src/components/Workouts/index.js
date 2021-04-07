@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import weightWorkService from "../../services/workouts.service.js";
 import SingleWorkout from '../SingleWorkout';
 
-const Workouts = () => {
+const Workouts = ({ workouts }) => {
 
-    const [workouts, setWorkouts] = useState([]);
+    /*const [workouts, setWorkouts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const id = 1;
@@ -26,7 +26,7 @@ const Workouts = () => {
 
         useEffect(() => {
             fetchWorkouts();
-        }, [isLoading]);
+        }, [isLoading]);*/
 
         return (
             <div>

@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import weightWorkService from "../../services/workouts.service.js";
 
-const AddWorkout = () => {
+const AddWorkout = (props) => {
+
+    const {
+        workouts,
+        setWorkouts
+    } = props;
     
     const [workoutState, setWorkoutState] = useState({ name: '', sets: null, reps: null, weight: null, muscle_group: '', notes: '', user_id: null });
 
@@ -12,11 +17,15 @@ const AddWorkout = () => {
             ...workoutState,
             [name]: value
         });
-        console.log(workoutState);
     }
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+
+        setWorkouts([
+            ...workouts,
+            workoutState
+        ]);
 
         // Create a a new workout
         weightWorkService.create(workoutState)
@@ -26,7 +35,22 @@ const AddWorkout = () => {
             .catch(e => {
                 console.log(e);
             });
+
+        
+            setWorkoutState({
+                name: '', 
+                sets: null, 
+                reps: null, 
+                weight: null,
+                muscle_group: '', 
+                notes: '', 
+                user_id: null 
+            });
     };
+
+    useEffect(() => {
+        console.log("Workouts:    " + workouts);
+    }, [workouts]);
 
     return (
         <div>

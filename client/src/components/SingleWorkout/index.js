@@ -40,10 +40,6 @@ const SingleWorkout = (props) => {
 
         };
 
-        /*useEffect(() => {
-            fetchWorkout();
-        }, [isLoading]);*/
-
         return (
             <div>
             <div className="text-center mb-3">

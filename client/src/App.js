@@ -15,26 +15,36 @@ function App() {
 
   const [currentSection, setCurrentSection] = useState(sections[0]);
 
-  const initialUserState = {
+  const [workouts, setWorkouts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const id = 1;
+
+      const fetchWorkouts = () => {
+          if (isLoading) {
+              weightWorkService.getMyWorkouts(id)
+              .then(response => {
+                setWorkouts([...response.data]);
+                setIsLoading(false);
+                console.log(response.data[0].id);
+              })
+              .catch(e => {
+                console.log(e);
+              });
+          }
+      };
+
+      useEffect(() => {
+        fetchWorkouts();
+    }, [isLoading]);
+
+  /*const initialUserState = {
     id: null,
     username: "",
     weight: 0
   };
 
-  const [user, setUser] = useState(initialUserState);
-
- /*weightWorkService.getAll()
-    .then(response => {
-      setUser({
-        id: response.data.id,
-        username: response.data.username,
-        weight: response.data.weight
-      })
-      //console.log("user:   " + response.data[0].username);
-    })
-    .catch(e => {
-      console.log(e);
-    });*/
+  const [user, setUser] = useState(initialUserState);*/
 
   return (
     <div className="App">
@@ -45,12 +55,19 @@ function App() {
       >
       </Nav>
       {currentSection === 'My Workouts' ? (
-          <Workouts></Workouts>
+          <Workouts
+            workouts={workouts}
+          ></Workouts>
           
         ) : currentSection === 'Calendar' ? (
-          <TheCalendar></TheCalendar>
+          <TheCalendar
+            workouts={workouts}
+          ></TheCalendar>
         ) : (
-          <AddWorkout></AddWorkout>
+          <AddWorkout
+          workouts={workouts}
+          setWorkouts={setWorkouts}
+          ></AddWorkout>
         )}
     </div>
   );
