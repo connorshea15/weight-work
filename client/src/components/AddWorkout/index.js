@@ -36,7 +36,6 @@ const AddWorkout = (props) => {
                 console.log(e);
             });
 
-        
             setWorkoutState({
                 name: '', 
                 sets: null, 
@@ -47,10 +46,6 @@ const AddWorkout = (props) => {
                 user_id: null 
             });
     };
-
-    useEffect(() => {
-        console.log("Workouts:    " + workouts);
-    }, [workouts]);
 
     return (
         <div>
