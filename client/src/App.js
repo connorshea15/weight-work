@@ -8,6 +8,7 @@ import AddWorkout from './components/AddWorkout';
 import Workouts from './components/Workouts';
 import TheCalendar from './components/Calendar';
 import Nav from './components/Nav';
+import WorkoutList from './components/WorkoutList';
 
 function App() {
 
@@ -55,9 +56,12 @@ function App() {
       >
       </Nav>
       {currentSection === 'My Workouts' ? (
-          <Workouts
+        <div>
+          <WorkoutList
             workouts={workouts}
-          ></Workouts>
+          >
+          </WorkoutList>
+          </div>
           
         ) : currentSection === 'Calendar' ? (
           <TheCalendar

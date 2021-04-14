@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import weightWorkService from "../../services/workouts.service.js";
+import moment from 'moment';
 
 const AddWorkout = (props) => {
 
@@ -8,14 +9,23 @@ const AddWorkout = (props) => {
         setWorkouts
     } = props;
     
-    const [workoutState, setWorkoutState] = useState({ name: '', sets: null, reps: null, weight: null, muscle_group: '', notes: '', user_id: null });
+    const uniqueWorkouts = [];
+
+    workouts.map(workout => {
+        if (!uniqueWorkouts.includes(workout.name)) {
+            uniqueWorkouts.push(workout.name);
+        }
+    });
+
+    const [workoutState, setWorkoutState] = useState({ name: '', sets: null, reps: null, weight: null, muscle_group: '', notes: '', user_id: null, date_created: '' });
 
     const handleChange = (event) => {
         const { name, value } = event.target;
 
         setWorkoutState({
             ...workoutState,
-            [name]: value
+            [name]: value,
+            date_created: moment().format("YYYY-MM-DD")
         });
     }
 
@@ -47,12 +57,23 @@ const AddWorkout = (props) => {
             });
     };
 
+    useEffect(() => {
+        console.log("workout state here!:   "+ workouts);
+    }, [workouts]);
+
     return (
         <div>
-        <form>
+        <form autocomplete="off">
             <div class="form-group">
-                <label>Wokout Name</label>
-                <input type="text" class="form-control" name="name" placeholder="Name of Workout" onChange={handleChange} />
+                <label>Workout Name</label>
+                <input type="text" class="form-control" name="name" placeholder="Name of Workout" list="suggestions" onChange={handleChange} />
+                <datalist id="suggestions">
+                    {uniqueWorkouts &&
+                        uniqueWorkouts.map(workout => (
+                            <option>{workout}</option>
+                        ))
+                    }
+                </datalist>
             </div>
             <div class="form-group">
                 <label>Muscle Group</label>

@@ -18,11 +18,6 @@ const SingleDay = (props) => {
         setShow(false);
     }
 
-    /*{todaysWorkouts &&
-        todaysWorkouts.map(workout => (
-                <p key={workout.id}>{workout.name}</p>
-        ))
-    }*/
         return (
             <div>
                 <Modal show={show} onHide={handleClose}>

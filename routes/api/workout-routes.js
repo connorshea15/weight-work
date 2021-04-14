@@ -8,7 +8,7 @@ const { Op } = require('sequelize');
 router.get('/:id', (req, res) => {
     // Access our User model and run .findAll() method)
     Workout.findAll({
-        attributes: ['id', 'name', 'date_created', 'created_at'],
+        attributes: ['id', 'name', 'date_created', 'created_at', 'sets', 'reps', 'weight', 'notes'],
         where: {
             user_id: req.params.id
         },

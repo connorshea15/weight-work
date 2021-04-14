@@ -9,14 +9,12 @@ const Workouts = ({ workouts }) => {
                 {workouts &&
                     workouts.map(workout => (
                         <SingleWorkout
-                            workoutName={workout.name}
-                            id={workout.id}
+                            workout={workout}
                         ></SingleWorkout>
                     ))
                 }
             </div>
         )
-
 };
 
 export default Workouts;
