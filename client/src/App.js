@@ -9,6 +9,7 @@ import Workouts from './components/Workouts';
 import TheCalendar from './components/Calendar';
 import Nav from './components/Nav';
 import WorkoutList from './components/WorkoutList';
+import Graph from './components/Graph';
 
 function App() {
 

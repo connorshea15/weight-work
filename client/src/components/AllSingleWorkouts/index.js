@@ -3,6 +3,7 @@ import weightWorkService from "../../services/workouts.service.js";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Workouts from '../Workouts';
+import Graph from '../Graph'
 
 
 const AllSingleWorkouts = (props) => {
@@ -48,10 +49,7 @@ const AllSingleWorkouts = (props) => {
                     </Modal.Header>
                     <Modal.Body>
                         <div className="mx-auto">
-                            {theseWorkouts.length > 0 
-                                ? <Workouts workouts={theseWorkouts}></Workouts>
-                                : <h3>You were a lazy piece of garbage on this day!</h3>
-                            }
+                            <Graph workouts={theseWorkouts}></Graph>
                         </div>
                     </Modal.Body>
                     <Modal.Footer>
